@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Repository.Data;
 using Service;
+using Repository;
 using Service.Helpers.Account;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,6 +54,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 builder.Configuration.GetSection("JWTSettings").Get<JwtSettings>();
 
+builder.Services.AddRepositoryLayer();
 builder.Services.AddServiceLayer();
 
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims

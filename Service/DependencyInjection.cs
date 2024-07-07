@@ -22,8 +22,10 @@ namespace Service
 
 			service.AddScoped<IValidator<RegisterDto>, RegisterDtoValidator>();
 			service.AddScoped<IAccountService, AccountService>();
+			service.AddScoped<IBookService, BookService>();
+			service.AddScoped<IAuthorService, AuthorService>();
 
-			return service;
+            return service;
 		}
 	}
 }

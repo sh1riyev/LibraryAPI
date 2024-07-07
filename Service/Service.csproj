@@ -17,6 +17,7 @@
     <None Remove="DTOs\Account\" />
     <None Remove="Helpers\Account\" />
     <None Remove="Helpers\Enums\" />
+    <None Remove="DTOs\Author\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTOs\" />
@@ -26,6 +27,7 @@
     <Folder Include="DTOs\Account\" />
     <Folder Include="Helpers\Account\" />
     <Folder Include="Helpers\Enums\" />
+    <Folder Include="DTOs\Author\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />

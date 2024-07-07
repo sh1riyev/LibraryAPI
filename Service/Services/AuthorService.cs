@@ -14,34 +14,38 @@ namespace Service.Services
             _authorRepo = authorRepo;
 		}
 
-        public Task Create(Author entity)
+        public async Task Create(Author entity)
         {
-            throw new NotImplementedException();
+            if (await _authorRepo.IsExist(m => m.Email == entity.Email)) throw new FormatException();
+            await _authorRepo.Create(entity);
+
         }
 
-        public Task Delete(Author entiy)
+        public async Task Delete(Author entiy)
         {
-            throw new NotImplementedException();
+            await _authorRepo.Delete(entiy);
         }
 
-        public Task<List<Author>> GetAll(Expression<Func<Author, bool>> predicate = null, params string[] includes)
+        public async Task<List<Author>> GetAll(Expression<Func<Author, bool>> predicate = null, params string[] includes)
         {
-            throw new NotImplementedException();
+            return await _authorRepo.GetAll(predicate, includes);
         }
 
-        public Task<Author> GetBy(Expression<Func<Author, bool>> predicate = null, params string[] includes)
+        public async Task<Author> GetBy(Expression<Func<Author, bool>> predicate = null, params string[] includes)
         {
-            throw new NotImplementedException();
+            return await _authorRepo.GetEntity(predicate, includes);
         }
 
-        public Task<bool> IsExist(Expression<Func<Author, bool>> predicate = null)
+        public async Task<bool> IsExist(Expression<Func<Author, bool>> predicate = null)
         {
-            throw new NotImplementedException();
+            return await _authorRepo.IsExist(predicate);
         }
 
-        public Task Update(Author entity)
+        public async  Task Update(Author entity)
         {
-            throw new NotImplementedException();
+            if (await _authorRepo.IsExist(m => m.Id != entity.Id && m.Email == entity.Email)) throw new FormatException();
+            entity.UpdateDate = DateTime.Now;
+            await _authorRepo.Update(entity);
         }
     }
 }
